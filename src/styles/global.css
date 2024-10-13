@@ -11,6 +11,10 @@
     --accent-color: orange;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .header-container {
     width: 100vw;
     height: var(--header-height);
@@ -23,11 +27,24 @@
     height: calc(100vh - var(--header-height));
     padding: var(--common-padding);
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.border-accent {
+    border-color: var(--accent-color);
 }
 
 .light-theme {
     background-color: var(--light-color);
-    color:  var(--dark-color);
+    color: var(--dark-color);
 }
 
 .dark-theme {
