@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --header-height: 60px;
+    --common-padding: 8px;
+
+    --light-color: #FFF;
+    --dark-color: #1a202c;
+    --accent-color: orange;
+}
+
+.header-container {
+    width: 100vw;
+    height: var(--header-height);
+    border: 1px none var(--accent-color);
+    border-bottom-style: solid;
+}
+
+.content-container {
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
+    padding: var(--common-padding);
+    box-sizing: border-box;
+}
+
+.light-theme {
+    background-color: var(--light-color);
+    color:  var(--dark-color);
+}
+
+.dark-theme {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
