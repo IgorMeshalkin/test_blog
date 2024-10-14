@@ -1,10 +1,10 @@
-import { AppProps } from 'next/app';
+import {AppProps} from 'next/app';
 import Header from "@/src/components/header/header";
 import React from "react";
 import "@/src/styles/global.css"
 import ScrollDownButton from "@/src/components/ui/scroll-down-button/scroll-down-button";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({Component, pageProps}: AppProps) {
     return (
         <div className="app-container">
             <div className="header-container">
