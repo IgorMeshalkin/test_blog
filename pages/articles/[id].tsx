@@ -35,7 +35,7 @@ const ArticlePage = ({article}: IArticlePageProps) => {
                        width={500}
                        className="max-w-full h-auto"
                 />
-                <div className="w-full mb-16">
+                <div className="w-3/5 mb-16">
                     <span className="">{article.body}</span>
                 </div>
             </div>
