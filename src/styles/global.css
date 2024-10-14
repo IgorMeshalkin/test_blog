@@ -11,20 +11,29 @@
     --accent-color: orange;
 }
 
+html {
+    transition: .3s;
+}
+
 body {
     overflow-x: hidden;
 }
 
-.header-container {
+.app-container {
+    height: 100vh;
     width: 100vw;
+}
+
+.header-container {
+    width: 100%;
     height: var(--header-height);
     border: 1px none var(--accent-color);
     border-bottom-style: solid;
 }
 
 .content-container {
-    width: 100vw;
-    height: calc(100vh - var(--header-height));
+    width: 100%;
+    height: calc(100% - var(--header-height));
     padding: var(--common-padding);
     box-sizing: border-box;
     display: flex;

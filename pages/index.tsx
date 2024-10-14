@@ -1,17 +1,20 @@
 import React from 'react';
 import {getArticles} from "@/src/mock_api/article_api";
+import {TArticle} from "@/src/types/article";
 import Link from "next/link";
 
-export async function generateStaticParams() {
+export const getStaticProps = async () => {
     const articles = await getArticles();
-    return articles.map((article) => ({
-        id: article.id.toString(),
-    }));
+    return {
+        props: {articles},
+    };
+};
+
+interface IHomePageProps {
+    articles: TArticle[];
 }
 
-export default async function Home() {
-    const articles = await getArticles();
-
+const HomePage = ({articles}: IHomePageProps) => {
     return (
         <div className="w-2/3 h-full flex-center flex-col">
             <h1 className="text-xl font-bold mb-8 ">Список статей:</h1>
@@ -24,4 +27,6 @@ export default async function Home() {
             </ul>
         </div>
     );
-}
+};
+
+export default HomePage;

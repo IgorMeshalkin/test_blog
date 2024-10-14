@@ -1,21 +1,31 @@
 import React from 'react';
 import {getArticles} from "@/src/mock_api/article_api";
 import Image from "next/image";
-import ScrollDownButton from "@/src/components/ui/scroll-down-button/scroll-down-button";
+import {TArticle} from "@/src/types/article";
 
-
-export async function generateStaticParams() {
+export const getStaticPaths = async () => {
     const articles = await getArticles();
-    return articles.map((article) => ({
-        id: article.id.toString(),
+    const paths = articles.map((article) => ({
+        params: { id: article.id.toString() },
     }));
-}
+    return { paths, fallback: false };
+};
 
-
-const Article = async ({params}: { params: { id: string } }) => {
+export const getStaticProps = async ({ params }: { params: { id: string } }) => {
     const articles = await getArticles();
     const article = articles.find((article) => article.id === Number(params.id));
+    return {
+        props: {
+            article,
+        },
+    };
+};
 
+interface IArticlePageProps {
+    article: TArticle;
+}
+
+const ArticlePage = ({article}:IArticlePageProps) => {
     return (
         <div className="w-full max-w-full h-full flex items-center flex-col">
             {
@@ -27,16 +37,13 @@ const Article = async ({params}: { params: { id: string } }) => {
                            width={500}
                            className="max-w-full h-auto"
                     />
-                    <div className="w-full">
+                    <div className="w-full mb-16">
                         <span className="">{article.body}</span>
                     </div>
                 </div>
             }
-            <div className="fixed bottom-8 right-8">
-                <ScrollDownButton/>
-            </div>
         </div>
     );
 };
 
-export default Article;
+export default ArticlePage;
