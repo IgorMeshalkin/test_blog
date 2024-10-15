@@ -17,7 +17,7 @@ const ThemeSwitcher = () => {
             const selectedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-theme' : 'light-theme';
             dispatch(setTheme(selectedTheme));
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         const oppositeTheme = theme === 'dark-theme' ? 'light-theme' : 'dark-theme';
