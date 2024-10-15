@@ -1,18 +1,21 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import classNames from "classnames";
+import {useAppDispatch, useAppSelector} from "@/src/hooks/reduxHooks";
+import {setTheme} from "@/src/store/slices/themeSlice";
 
 const ThemeSwitcher = () => {
-    const [theme, setTheme] = useState<'light-theme' | 'dark-theme'>('light-theme');
+    const theme = useAppSelector(themeSlice => themeSlice.theme.theme);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') as 'light-theme' | 'dark-theme';
         if (savedTheme) {
-            setTheme(savedTheme);
+            dispatch(setTheme(savedTheme));
         } else {
             const selectedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-theme' : 'light-theme';
-            setTheme(selectedTheme);
+            dispatch(setTheme(selectedTheme));
         }
     }, []);
 
@@ -24,7 +27,7 @@ const ThemeSwitcher = () => {
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(prevState => prevState === 'dark-theme' ? 'light-theme' : 'dark-theme')
+        dispatch(setTheme(theme === 'dark-theme' ? 'light-theme' : 'dark-theme'));
     };
 
     return (
